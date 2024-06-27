@@ -1,0 +1,34 @@
+// % Discount price product
+function product_discount_percentage_shortcode($atts) {
+    // Ensure WooCommerce is active
+    if (!class_exists('WooCommerce')) {
+        return '';
+    }
+
+    global $product;
+
+    // Ensure we're on a single product page
+    if (!is_product()) {
+        return '';
+    }
+
+    // Get product
+    $product = wc_get_product(get_the_ID());
+
+    // Get sale price and regular price
+    $regular_price = $product->get_regular_price();
+    $sale_price = $product->get_sale_price();
+
+    // Check if the product is on sale
+    if ($sale_price && $regular_price && $regular_price > $sale_price) {
+        // Calculate discount percentage
+        $discount_percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
+        
+        // Return discount percentage
+        return '<span class="discount-percentage">' . $discount_percentage . '%</span>';
+    }
+
+    // If no discount, return an empty string
+    return '';
+}
+add_shortcode('discount_percentage', 'product_discount_percentage_shortcode');
