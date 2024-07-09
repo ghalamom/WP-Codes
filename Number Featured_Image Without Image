@@ -1,0 +1,110 @@
+//Number featured_image without Image . if value is 0=hide
+function count_products_without_featured_image() {
+    // Query to get products without a featured image
+    $args = array(
+        'post_type'      => 'product',
+        'post_status'    => 'any', // Include all post statuses
+        'posts_per_page' => -1,    // Get all products
+        'meta_query'     => array(
+            array(
+                'key'     => '_thumbnail_id',
+                'compare' => 'NOT EXISTS'
+            )
+        )
+    );
+
+    $query = new WP_Query($args);
+    $count = $query->found_posts;
+
+    // Clean up after WP_Query
+    wp_reset_postdata();
+
+    return $count;
+}
+
+function count_products_without_featured_image_shortcode() {
+    $count = count_products_without_featured_image();
+    if ($count == 0) {
+        return '';
+    } else {
+        return "تعداد محصولات بدون تصویر شاخص: " . $count;
+    }
+}
+
+// Register the shortcode
+add_shortcode('count_products_no_image', 'count_products_without_featured_image_shortcode');
+
+
+
+
+
+
+
+
+
+
+//Number featured_image without Image . if value is 0=Green . if value is +0=Red
+
+function count_products_without_thumbnail() {
+    // Query arguments
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => -1,
+        'meta_query'     => array(
+            array(
+                'key'     => '_thumbnail_id',
+                'compare' => 'NOT EXISTS'
+            ),
+        ),
+    );
+
+    // Custom query
+    $query = new WP_Query($args);
+
+    // Count of products without a thumbnail
+    $count = $query->found_posts;
+
+    // Choose color based on the count
+    $color = ($count == 0) ? '#61CE70' : '#FF0000';
+
+    // Return the count with appropriate color
+    return '<span style="color:' . $color . ';">' . $count . '</span>';
+}
+add_shortcode('count_products_without_thumbnail', 'count_products_without_thumbnail');
+
+
+
+
+
+
+//Number featured_image without Image . with text "تعداد محصولات بدون تصویر شاخص"
+
+function count_products_without_featured_image() {
+    // Query to get products without a featured image
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => -1, // Get all products
+        'meta_query'     => array(
+            array(
+                'key'     => '_thumbnail_id',
+                'compare' => 'NOT EXISTS'
+            )
+        )
+    );
+
+    $query = new WP_Query($args);
+    $count = $query->found_posts;
+
+    // Clean up after WP_Query
+    wp_reset_postdata();
+
+    return $count;
+}
+
+function count_products_without_featured_image_shortcode() {
+    $count = count_products_without_featured_image();
+    return "تعداد محصولات بدون تصویر شاخص: " . $count;
+}
+
+// Register the shortcode
+add_shortcode('count_products_no_image', 'count_products_without_featured_image_shortcode');
