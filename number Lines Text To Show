@@ -1,5 +1,5 @@
 /* number Lines Text To Show */
-.Classtext {
+.TextLimit {
    overflow: hidden;
    text-overflow: ellipsis;
    display: -webkit-box;
