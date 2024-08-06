@@ -1,0 +1,42 @@
+// Wallet Status Complate Slug Product
+function set_order_complete_for_wallet($order_id) {
+    if (!$order_id) return;
+
+    // Get an instance of the WC_Order object
+    $order = wc_get_order($order_id);
+
+    // Check if the order has the specific product slug 'wallet-topup'
+    foreach ($order->get_items() as $item) {
+        $product = $item->get_product();
+        if ($product && $product->get_slug() === 'wallet-topup') {
+            // Set the order status to "completed"
+            $order->update_status('completed');
+            break;
+        }
+    }
+}
+add_action('woocommerce_thankyou', 'set_order_complete_for_wallet');
+
+
+
+
+
+
+
+// Wallet Status Complate ID Product
+function set_order_complete_for_wallet($order_id) {
+    if (!$order_id) return;
+
+    // Get an instance of the WC_Order object
+    $order = wc_get_order($order_id);
+
+    // Check if the order has the specific product ID 10312
+    foreach ($order->get_items() as $item) {
+        if ($item->get_product_id() == 10312) {
+            // Set the order status to "completed"
+            $order->update_status('completed');
+            break;
+        }
+    }
+}
+add_action('woocommerce_thankyou', 'set_order_complete_for_wallet');
