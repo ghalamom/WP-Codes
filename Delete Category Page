@@ -1,0 +1,8 @@
+# Delete Category Page حذف صفحات برچسب
+function remove_tags_from_search_index() {
+    if (is_tag()) {
+        wp_redirect(home_url());
+        exit();
+    }
+}
+add_action('template_redirect', 'remove_tags_from_search_index');
