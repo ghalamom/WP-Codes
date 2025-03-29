@@ -1,0 +1,12 @@
+/* اضافه کردن دسترسی های مدیرفروشگاه به مدیر سئو */
+function add_shop_manager_capabilities_to_seo_manager() {
+    $seo_manager = get_role('wpseo_manager'); // دریافت نقش مدیر سئو
+    $shop_manager = get_role('shop_manager'); // دریافت نقش مدیر فروشگاه
+
+    if ($seo_manager && $shop_manager) {
+        foreach ($shop_manager->capabilities as $cap => $grant) {
+            $seo_manager->add_cap($cap, $grant);
+        }
+    }
+}
+add_action('init', 'add_shop_manager_capabilities_to_seo_manager');
