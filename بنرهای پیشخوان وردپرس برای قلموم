@@ -1,0 +1,239 @@
+
+/* بنر پیشخوان وردپرس */
+add_action('admin_notices', 'ghalamom_dashboard_top_banner');
+function ghalamom_dashboard_top_banner() {
+    $screen = get_current_screen();
+    if ($screen->base !== 'dashboard') return;
+
+    echo '<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">';
+    ?>
+    <style>
+        .ghalamom-banner {
+            margin: 50px 0px 10px 20px;
+            padding: 30px;
+            text-align: center;
+            font-family: 'Vazir', sans-serif;
+            background: #383751;
+            border-radius: 10px;
+        }
+
+        .ghalamom-banner h2 {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-weight: bold;
+            line-height: 35px;
+			font-family: 'Vazir', sans-serif;
+        }
+
+        .ghalamom-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .ghalamom-btn {
+            background: #fff;
+            color: #303030;
+            padding: 10px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .ghalamom-btn:hover {
+            background: #f1f1f1;
+			color: #383751
+        }
+
+        @media (max-width: 736px) {
+            .ghalamom-btn {
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+
+    <div class="ghalamom-banner">
+        <h2>توسعه و پشتیبانی سایت توسط قلموم</h2>
+        <div class="ghalamom-btn-wrapper">
+            <a href="https://ghalamom.ir/" target="_blank" class="ghalamom-btn">سایت قلموم</a>
+            <a href="tel:09134252522" class="ghalamom-btn">تماس 09134252522</a>
+            <a href="https://instagram.com/ghalamom.ir/" target="_blank" class="ghalamom-btn">اینستاگرام قلموم</a>
+        </div>
+    </div>
+    <?php
+}
+
+
+
+
+
+/* بنر نوشت ها */
+add_action('admin_notices', 'ghalamom_post_type_posts_banner');
+function ghalamom_post_type_posts_banner() {
+    $screen = get_current_screen();
+
+    // فقط اگر در صفحه لیست نوشته‌های معمولی (post type = post) هستیم
+    if ($screen->base !== 'edit' || $screen->post_type !== 'post') return;
+
+    // فونت وزیر
+    echo '<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">';
+    ?>
+    <style>
+        .ghalamom-banner {
+            margin: 50px 0px 10px 20px;
+            padding: 30px;
+            text-align: center;
+            font-family: 'Vazir', sans-serif;
+            background: #383751;
+            border-radius: 10px;
+        }
+
+        .ghalamom-banner h2 {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-weight: bold;
+            line-height: 35px;
+			font-family: 'Vazir', sans-serif;
+        }
+
+        .ghalamom-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .ghalamom-btn {
+            background: #fff;
+            color: #303030;
+            padding: 10px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .ghalamom-btn:hover {
+            background: #f1f1f1;
+			color: #383751
+        }
+
+        @media (max-width: 736px) {
+            .ghalamom-btn {
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+
+    <div class="ghalamom-banner">
+        <h2>تولیدمحتوا و سئو با قلموم</h2>
+        <div class="ghalamom-btn-wrapper">
+            <a href="https://ghalamom.ir/" target="_blank" class="ghalamom-btn">سایت قلموم</a>
+            <a href="tel:09134252522" class="ghalamom-btn">تماس 09134252522</a>
+            <a href="https://instagram.com/ghalamom.ir/" target="_blank" class="ghalamom-btn">اینستاگرام قلموم</a>
+        </div>
+    </div>
+    <?php
+}
+
+
+
+
+/* دکمه پشتیبانی قلموم */
+add_action('admin_footer', 'ghalamom_admin_footer_text');
+function ghalamom_admin_footer_text() {
+    ?>
+    <!-- فونت وزیر -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+    
+    <style>
+        #ghalamom-footer-link {
+            width: 110Px;
+			text-align:center;
+            gap: 6px;
+            position: fixed;
+            bottom: 7px;
+            right: 7px;
+            background: #f1f1f1;
+			color: #383751;
+			border:1px solid #383751;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-family: 'Vazir', sans-serif;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 9999;
+            text-decoration: none;
+            transition: background 0.3s ease;
+			
+        }
+
+        #ghalamom-footer-link:hover {
+            background: #383751;
+            color: #ffffff;
+            text-decoration: none;
+			border:1px solid #ffffff;
+        }
+
+    </style>
+
+    <a href="tel:09134252522" target="_blank" id="ghalamom-footer-link">
+         پشتیبانی قلموم
+    </a>
+    <?php
+}
+
+
+
+
+
+/* توسعه توسط قلموم */
+add_action('admin_footer', 'ghalamom_insert_text_in_wpfooter');
+function ghalamom_insert_text_in_wpfooter() {
+    ?>
+    <style>
+        .ghalamom-footer-message {
+            font-family: Vazir, sans-serif;
+            font-size: 13px;
+            color: #555;
+            text-decoration: none;
+            display: inline-block;
+			margin-top: -18px;
+            text-align: right;
+            float: right;
+            transition: color 0.3s ease;
+        }
+
+        .ghalamom-footer-message:hover {
+            color: #383751;
+			font-weight:500;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var wpfooter = document.getElementById('wpfooter');
+            if (!wpfooter) return;
+
+            var div = document.createElement('div');
+            div.innerHTML = '<a href="https://ghalamom.ir/" target="_blank" class="ghalamom-footer-message">توسعه توسط قلموم</a>';
+
+            wpfooter.appendChild(div);
+        });
+    </script>
+    <?php
+}
