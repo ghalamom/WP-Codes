@@ -1,0 +1,39 @@
+/* نمایش فقط اولین دسته‌بندی پست با لینک */
+function first_post_category_shortcode() {
+    if ( ! is_singular( 'post' ) ) {
+        return '';
+    }
+
+    $categories = get_the_category();
+
+    if ( empty( $categories ) ) {
+        return '';
+    }
+
+    return '<a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' 
+        . esc_html( $categories[0]->name ) . '</a>';
+}
+add_shortcode( 'first_category', 'first_post_category_shortcode' );
+
+
+
+
+
+
+
+/* نمایش فقط اولین دسته‌بندی پست بدون لینک */
+
+function first_post_category_shortcode() {
+    if ( ! is_singular( 'post' ) ) {
+        return '';
+    }
+
+    $categories = get_the_category();
+
+    if ( empty( $categories ) ) {
+        return '';
+    }
+
+    return esc_html( $categories[0]->name );
+}
+add_shortcode( 'first_category', 'first_post_category_shortcode' );
