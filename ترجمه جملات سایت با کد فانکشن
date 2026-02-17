@@ -20,3 +20,19 @@ function custom_bulk_translate_texts($translated, $text, $domain) {
 
     return $translated;
 }
+
+
+
+
+/////////////// اگر نشد این کدهارو بزن
+
+// ترجمه جملات سایت با کد فانکشن
+add_action('wp_head', function () {
+    ob_start(function ($buffer) {
+        return str_replace('customer review)', '(نظرات مشتریان', $buffer);
+    });
+});
+
+add_action('wp_footer', function () {
+    ob_end_flush();
+});
