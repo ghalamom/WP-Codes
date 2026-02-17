@@ -1,0 +1,22 @@
+// ترجمه جملات سایت با کد فانکشن
+add_filter('gettext', 'custom_bulk_translate_texts', 999, 3);
+add_filter('ngettext', 'custom_bulk_translate_texts', 999, 3);
+
+function custom_bulk_translate_texts($translated, $text, $domain) {
+
+    // لیست ترجمه‌های سفارشی
+    $custom_translations = array(
+        'Apply'             => 'اعمال کردن',
+        'No products in the cart.'             => 'محصولی در سبدخرید نیست',
+		'Coupon code'             => 'کد تخفیف',
+		'If you have a coupon code, please apply it below.'             => 'اگر کد تخفیف دارید، آن را در فرم زیر وارد کنید',
+		' customer review'             => ':تعداد نظرات',
+    );
+
+    // بررسی و جایگزینی
+    if ( isset($custom_translations[$text]) ) {
+        $translated = $custom_translations[$text];
+    }
+
+    return $translated;
+}
