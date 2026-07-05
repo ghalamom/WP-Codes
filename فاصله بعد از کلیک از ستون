@@ -1,0 +1,15 @@
+<script>
+jQuery(document).on('jet-filter-content-rendered', function () {
+    
+    // تشخیص عرض صفحه نمایش
+    var windowWidth = jQuery(window).width();
+    
+    // تعیین فاصله بر اساس عرض صفحه (اگر کمتر از 768 بود 15، در غیر این صورت 80)
+    var offsetValue = (windowWidth < 768) ? 50 : 80;
+
+    jQuery('html, body').animate({
+        scrollTop: jQuery('.filter-top').offset().top - offsetValue
+    }, 300);
+
+});
+</script>
