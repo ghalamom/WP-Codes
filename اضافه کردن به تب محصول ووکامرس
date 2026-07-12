@@ -1,0 +1,20 @@
+/* کد مربوط به اضافه کردن تب نمونه سازه ها به محصولات دسته بندی بسته آموزشی */
+add_filter( 'woocommerce_product_tabs', 'add_sample_structures_tab_conditionally' );
+function add_sample_structures_tab_conditionally( $tabs ) {
+    global $product;
+
+    // بررسی کن محصول فعلی در taxonomy به نام 'packs' هست یا نه
+    if ( has_term( '', 'packs', $product->get_id() ) ) {
+        $tabs['sample_structures'] = array(
+            'title'    => 'نمونه سازه‌ها',
+            'priority' => 50,
+            'callback' => 'sample_structures_tab_content'
+        );
+    }
+
+    return $tabs;
+}
+
+function sample_structures_tab_content() {
+    echo do_shortcode('[elementor-template id="1120"]');
+}
