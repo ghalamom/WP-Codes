@@ -18,3 +18,48 @@ function add_sample_structures_tab_conditionally( $tabs ) {
 function sample_structures_tab_content() {
     echo do_shortcode('[elementor-template id="1120"]');
 }
+
+
+
+
+
+
+
+
+/********** اگر نیاز بود 2تا دسته بندی مختلف داشته باشیم **************/
+/* اضافه کردن تب سفارشی برای محصولات packs و courses */
+add_filter( 'woocommerce_product_tabs', 'add_custom_product_tab_conditionally' );
+
+function add_custom_product_tab_conditionally( $tabs ) {
+    global $product;
+
+    if ( ! $product ) {
+        return $tabs;
+    }
+
+    $title = '';
+
+    // اگر محصول در taxonomy مربوط به packs باشد
+    if ( has_term( '', 'packs', $product->get_id() ) ) {
+        $title = 'نمونه سازه‌ها';
+    }
+
+    // اگر محصول در taxonomy مربوط به courses باشد
+    elseif ( has_term( '', 'courses', $product->get_id() ) ) {
+        $title = 'گالری دوره';
+    }
+
+    if ( $title ) {
+        $tabs['sample_structures'] = array(
+            'title'    => $title,
+            'priority' => 50,
+            'callback' => 'sample_structures_tab_content',
+        );
+    }
+
+    return $tabs;
+}
+
+function sample_structures_tab_content() {
+    echo do_shortcode( '[elementor-template id="1120"]' );
+}
