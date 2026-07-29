@@ -24,6 +24,45 @@ function custom_bulk_translate_texts($translated, $text, $domain) {
 
 
 
+
+
+
+
+
+add_filter( 'gettext', 'translate_woocommerce_strings', 20, 3 );
+function translate_woocommerce_strings( $translated_text, $text, $domain ) {
+    $translations = array(
+        'Please enter a coupon code.'      => 'لطفا کد تخفیف را وارد کنید',
+	    'cannot be applied because it does not exist'      => 'قابل اجرا نیست چون وجود نداره',
+		' cannot be applied because it does not exist.'      => 'قابل اجرا نیست چون وجود نداره',
+	    'cannot be applied because it does not exist.'      => 'قابل اجرا نیست چون وجود نداره',
+	    'Coupon'      => 'کد تخفیف',
+	    'Coupon '      => 'کد تخفیف',
+	    'Price'      => 'قیمت',
+		'Subtotal'      => 'قیمت کل',
+		'View cart'      => 'مشاهده سبد خرید',
+		'No products in the cart.'      => 'محصولی به سبد خرید اضافه نشده.',
+
+    );
+
+    if ( array_key_exists( $text, $translations ) ) {
+        return $translations[$text];
+    }
+
+    return $translated_text;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /////////////// اگر نشد این کدهارو بزن
 
 // ترجمه جملات سایت با کد فانکشن
@@ -36,3 +75,56 @@ add_action('wp_head', function () {
 add_action('wp_footer', function () {
     ob_end_flush();
 });
+
+
+
+
+
+
+
+
+
+
+// ترجمه جملات سایت با کد فانکشن
+add_action('wp_head', function () {
+    ob_start(function ($buffer) {
+        $buffer = str_replace('customer review)', 'دیدگاه مشتریان)', $buffer);
+        $buffer = str_replace('customer reviews)', 'دیدگاه مشتریان)', $buffer);
+		$buffer = str_replace('Description', 'توضیحات', $buffer);
+        $buffer = str_replace('Reviews', 'دیدگاه‌ها', $buffer);
+        $buffer = str_replace('reviews for', 'دیدگاه برای', $buffer);
+        $buffer = str_replace('Add a review', 'ثبت دیدگاه و امتیاز شما', $buffer);
+		$buffer = str_replace('Your review', 'دیدگاه شما', $buffer);
+		$buffer = str_replace('Your rating', 'امتیاز شما', $buffer);
+		$buffer = str_replace('You must be', 'برای ثبت دیدگاه باید', $buffer);
+		$buffer = str_replace('logged in', 'وارد', $buffer);
+		$buffer = str_replace('to post a review.', '.سایت شده باشید', $buffer);
+        $buffer = str_replace('Home', 'خانه', $buffer);
+		$buffer = str_replace('There are no reviews yet.', 'هنوز دیدگاهی وجود ندارد.', $buffer);
+	    $buffer = str_replace('Be the first to review', 'اولین نفری باشید که دیدگاهی مینویسد برای', $buffer);
+		$buffer = str_replace('Product', 'محصولات', $buffer);
+		$buffer = str_replace('Quantity', 'تعداد', $buffer);
+		$buffer = str_replace('Subtotal', 'جمع جزء', $buffer);
+		$buffer = str_replace('Total', 'قیمت کل فاکتور', $buffer);
+		$buffer = str_replace('Shipment', 'حمل و نقل', $buffer);
+		$buffer = str_replace('Shipping to', 'حمل و نقل به', $buffer);
+		$buffer = str_replace('Free shipping', 'ارسال رایگان', $buffer);
+		$buffer = str_replace('Change address', 'تغییر آدرس', $buffer);
+		$buffer = str_replace('Coupon code', 'کد تخفیف', $buffer);
+		$buffer = str_replace('Please enter a coupon code.', 'لطفا کد تخفیف را وارد کنید', $buffer);
+		$buffer = str_replace('cannot be applied because it does not exist.', 'قابل اجرا نیست چون وجود نداره', $buffer);
+		$buffer = str_replace(' cannot be applied because it does not exist.', 'قابل اجرا نیست چون وجود نداره', $buffer);
+		$buffer = str_replace('Cart updated.', 'سبد خرید بروزرسانی شد.', $buffer);
+		$buffer = str_replace('removed', 'حذف شد', $buffer);
+		$buffer = str_replace('Undo?', 'بازگردانی محصول؟', $buffer);
+		$buffer = str_replace('has been added to your cart', 'به سبد خرید شما اضافه شد', $buffer);
+		$buffer = str_replace('View cart', 'مشاهده سبد خرید', $buffer);
+
+        return $buffer;
+    });
+});
+
+add_action('wp_footer', function () {
+    ob_end_flush();
+});
+
